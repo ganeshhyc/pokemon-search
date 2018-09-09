@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>Pokemon</title>
+	</head>
+	<body>
+		<select id="selectBy" onchange="selected()">
+			<option value="pokeName">Search By Name</option>
+			<option value="pokeWeakness">Search By Weakness</option>
+		</select><br><br>
+		<input type="text" id="data" placeholder="Pokemon Name"></br><br>
+		<span id="nameSearched">
+			<button onclick="getInfo()">Information</button>
+			<button onclick="nextEvol()">Next Evolution</button>
+		</span>
+		<span id="weaknessSearched">
+			<button onclick="weakSearch()">weakness</button>
+		</span>
+		<br><br>
+		<div id="makeData"></div>
+
+	</body>
+
+	<script src="pokemon.js"></script>
+	<script src="index.js"></script>
+</html>
