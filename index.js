@@ -1,56 +1,78 @@
-var selected=()=>{
+let selected=()=>{
 	let selectBy=document.getElementById("selectBy").value;
 	if(selectBy=='pokeWeakness'){
-		document.getElementById("data").placeholder="Weakness"
-		document.getElementById("nameSearched").style.display="none"
-		document.getElementById("weaknessSearched").style.display="block"
+		myData.placeholder="Weakness"
+		nameSearched.style.display="none"
+		weaknessSearched.style.display="block"
 	}
 	else{
-		document.getElementById("data").placeholder="Pokemon Name"
-		document.getElementById("weaknessSearched").style.display="none"
-		document.getElementById("nameSearched").style.display="block"
+		myData.placeholder="Pokemon Name"
+		weaknessSearched.style.display="none"
+		nameSearched.style.display="block"
 	}
 }
-var capitalizeFirstLetter=(string)=>{
+let capitalizeFirstLetter=(string)=>{
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-var findPoke=()=>{
-	let name=document.getElementById('data').value;
+let findPoke=()=>{
+	let name=myData.value;
 	name = capitalizeFirstLetter(name.toLowerCase())
-	return pokemon.pokemon.find((val)=>{
-		return val.name==name
-	})
+	return pokemon
+				.pokemon
+					.find((val)=>val.name==name)
 }
-var weakSearch=()=>{
-	let weakness=document.getElementById('data').value;
+let weakSearch=()=>{
+	let weakness=myData.value;
 	weakness = capitalizeFirstLetter(weakness.toLowerCase())
-	let pokes = pokemon.pokemon.filter((val)=>{
-		return val.weaknesses.find((value)=>{
-			return value==weakness
-		})
+	let pokes = 
+			pokemon
+				.pokemon
+					.filter(
+						(val)=>{
+							return (
+								val.weaknesses
+									.find((value)=> value==weakness)
+								)
 	})
-	document.getElementById('makeData').innerHTML=`
+	makeData.innerHTML=`
 		${pokes.map((res)=>res.name)}
 	`
 }
-var checkNextEvolution=(pokeData)=>{
-	return pokeData.next_evolution!=undefined ? pokeData.next_evolution.map((res)=>{return res.name}):'No Next Evolution'
+let checkNextEvolution=(pokeData)=>{
+	return (
+		pokeData
+			.next_evolution!=undefined ?
+				pokeData.next_evolution
+					.map(
+						(res)=>{
+							return res.name
+							}
+						):'No Next Evolution'
+					)
 }
-var checkPrevEvolution=(pokeData)=>{
-	return pokeData.prev_evolution!=undefined ? pokeData.prev_evolution.map((res)=>{return res.name}):'No Prev Evolution'
+let checkPrevEvolution=(pokeData)=>{
+	return (
+		pokeData
+			.prev_evolution!=undefined ?
+				pokeData.prev_evolution.map(
+					(res)=>{
+						return res.name
+					}
+				):'No Prev Evolution'
+			)
 }
-var nextEvol=()=>{
+let nextEvol=()=>{
 	let des=findPoke()
-	document.getElementById('makeData').innerHTML=`
+	makeData.innerHTML=`
 		${ checkNextEvolution(des) }
 	`
 }
-var getInfo=()=>{
+let getInfo=()=>{
 	let des=findPoke()
 	if(des==undefined)
-		document.getElementById('makeData').innerHTML="Pokemon not found!"
+		makeData.innerHTML="Pokemon not found!"
 	else{
-		document.getElementById('makeData').innerHTML=`
+		makeData.innerHTML=`
 			<img src='${des.img}'><br>
 			NAME : ${des.name } <br>
 			TYPE : ${ des.type.map((res)=>{return res}) } <br>
