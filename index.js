@@ -13,12 +13,11 @@ let selected=()=>{
 }
 let capitalizeFirstLetter=(string)=>(string.charAt(0).toUpperCase() + string.slice(1))
 
-let findPoke=()=>pokemon.pokemon.find((val)=>(val.name==capitalizeFirstLetter(myData.value.toLowerCase())))
+let findPoke=()=>(pokemon.pokemon.find((val)=>(val.name==capitalizeFirstLetter(myData.value.toLowerCase()))))
 
 let weakSearch=()=>{
-	let pokes = pokemon.pokemon.filter((val)=>val.weaknesses.find((value)=>value==capitalizeFirstLetter(myData.value.toLowerCase())))
 	makeData.innerHTML=`
-		${pokes.map((res)=>res.name)}
+		${pokemon.pokemon.filter((val)=>val.weaknesses.find((value)=>value==capitalizeFirstLetter(myData.value.toLowerCase()))).map((res)=>res.name)}
 	`
 }
 let checkNextEvolution=(pokeData)=>(
@@ -49,7 +48,7 @@ let getInfo=()=>{
 			EGG : ${ des.egg } <br>
 			SPAWN CHANGE : ${ des.spawn_chance } <br>
 			MULTIPLIERS : ${ des.multipliers } <br>
-			WEAKNESSES : ${ des.weaknesses.map((res)=>{return res}) } <br>
+			WEAKNESSES : ${ des.weaknesses.map((res)=>res) } <br>
 			NEXT EVOLUTION : ${ checkNextEvolution(des) } <br>
 			PREV EVOLUTION : ${ checkPrevEvolution(des) } <br>
 		`
