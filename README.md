@@ -1,2 +1,2 @@
 "# pokemon-search" 
-"# ES6 for beginners" 
+"# Playing with ES6" 
