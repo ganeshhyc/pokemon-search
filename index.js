@@ -11,14 +11,19 @@ var selected=()=>{
 		document.getElementById("nameSearched").style.display="block"
 	}
 }
+var capitalizeFirstLetter=(string)=>{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 var findPoke=()=>{
 	let name=document.getElementById('data').value;
+	name = capitalizeFirstLetter(name.toLowerCase())
 	return pokemon.pokemon.find((val)=>{
 		return val.name==name
 	})
 }
 var weakSearch=()=>{
 	let weakness=document.getElementById('data').value;
+	weakness = capitalizeFirstLetter(weakness.toLowerCase())
 	let pokes = pokemon.pokemon.filter((val)=>{
 		return val.weaknesses.find((value)=>{
 			return value==weakness
