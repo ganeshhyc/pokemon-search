@@ -11,62 +11,28 @@ let selected=()=>{
 		nameSearched.style.display="block"
 	}
 }
-let capitalizeFirstLetter=(string)=>{
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-let findPoke=()=>{
-	let name=myData.value;
-	name = capitalizeFirstLetter(name.toLowerCase())
-	return pokemon
-				.pokemon
-					.find((val)=>val.name==name)
-}
+let capitalizeFirstLetter=(string)=>(string.charAt(0).toUpperCase() + string.slice(1))
+
+let findPoke=()=>pokemon.pokemon.find((val)=>(val.name==capitalizeFirstLetter(myData.value.toLowerCase())))
+
 let weakSearch=()=>{
-	let weakness=myData.value;
-	weakness = capitalizeFirstLetter(weakness.toLowerCase())
-	let pokes = 
-			pokemon
-				.pokemon
-					.filter(
-						(val)=>{
-							return (
-								val.weaknesses
-									.find((value)=> value==weakness)
-								)
-	})
+	let pokes = pokemon.pokemon.filter((val)=>val.weaknesses.find((value)=>value==capitalizeFirstLetter(myData.value.toLowerCase())))
 	makeData.innerHTML=`
 		${pokes.map((res)=>res.name)}
 	`
 }
-let checkNextEvolution=(pokeData)=>{
-	return (
-		pokeData
-			.next_evolution!=undefined ?
-				pokeData.next_evolution
-					.map(
-						(res)=>{
-							return res.name
-							}
-						):'No Next Evolution'
-					)
-}
-let checkPrevEvolution=(pokeData)=>{
-	return (
-		pokeData
-			.prev_evolution!=undefined ?
-				pokeData.prev_evolution.map(
-					(res)=>{
-						return res.name
-					}
-				):'No Prev Evolution'
-			)
-}
-let nextEvol=()=>{
-	let des=findPoke()
-	makeData.innerHTML=`
-		${ checkNextEvolution(des) }
-	`
-}
+let checkNextEvolution=(pokeData)=>(
+		pokeData.next_evolution!=undefined
+		?
+		pokeData.next_evolution.map((res)=>res.name):'No Next Evolution')
+
+let checkPrevEvolution=(pokeData)=>(
+		pokeData.prev_evolution!=undefined
+		?
+		pokeData.prev_evolution.map((res)=>res.name):'No Prev Evolution')
+
+let nextEvol=()=>(makeData.innerHTML=`${ checkNextEvolution(findPoke())}`)
+
 let getInfo=()=>{
 	let des=findPoke()
 	if(des==undefined)
