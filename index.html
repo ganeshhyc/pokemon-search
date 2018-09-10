@@ -11,20 +11,21 @@
 			<a class="navbar-brand" href="#">Pokemon</a>
 		</nav><br>
 		<div class="input-group mb-3">
-			<div class="input-group-prepend">
+				&nbsp;&nbsp;&nbsp;
+				<div class="input-group-prepend">
 					<input type="text" id="data" placeholder="Pokemon Name">
 			</div>
 			<select style="width:170px;" id="selectBy" onchange="selected()">
 				<option value="pokeName">Search By Name</option>
 				<option value="pokeWeakness">Search By Weakness</option>
 			</select>
-		</div><br><br>
+		</div><br>
 		<span id="nameSearched">
-			<button onclick="getInfo()">Information</button>
-			<button onclick="nextEvol()">Next Evolution</button>
+				&nbsp;&nbsp;&nbsp;<button onclick="getInfo()" type="button" class="btn btn-lg btn-primary" >Information</button>
+				&nbsp;&nbsp;&nbsp;<button onclick="nextEvol()" type="button" class="btn btn-secondary btn-lg" >Next Evolutionutton</button>
 		</span>
 		<span id="weaknessSearched">
-			<button onclick="weakSearch()">weakness</button>
+				&nbsp;&nbsp;&nbsp;<button onclick="weakSearch()" type="button" class="btn btn-lg btn-primary" >Weakness</button>
 		</span>
 		<br><br>
 		<div id="makeData"></div>

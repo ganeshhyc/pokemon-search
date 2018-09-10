@@ -35,22 +35,39 @@ let nextEvol=()=>(makeData.innerHTML=`${ checkNextEvolution(findPoke())}`)
 let getInfo=()=>{
 	let des=findPoke()
 	if(des==undefined)
-		makeData.innerHTML="Pokemon not found!"
+		makeData.innerHTML=`
+			<div class="jumbotron jumbotron-fluid">
+				<div class="container">
+				<h1 class="display-4">Pokemon Not Found!</h1>
+				</div>
+			</div>
+		`
 	else{
 		makeData.innerHTML=`
-			<img src='${des.img}'><br>
-			NAME : ${des.name } <br>
-			TYPE : ${ des.type.map((res)=>{return res}) } <br>
-			HEIGHT : ${ des.height } <br>
-			WEIGHT : ${ des.weight } <br>
-			CANDY : ${ des.candy } <br>
-			CANDY COUNT : ${ des.candy_count } <br>
-			EGG : ${ des.egg } <br>
-			SPAWN CHANGE : ${ des.spawn_chance } <br>
-			MULTIPLIERS : ${ des.multipliers } <br>
-			WEAKNESSES : ${ des.weaknesses.map((res)=>res) } <br>
-			NEXT EVOLUTION : ${ checkNextEvolution(des) } <br>
-			PREV EVOLUTION : ${ checkPrevEvolution(des) } <br>
+			<div class="card-deck container-fluid">
+				<div class="card">
+				&nbsp;&nbsp;&nbsp;<img class="card-img-top" src="${des.img}" style="width:100px;height:100px;" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">${des.name}</h5>
+					<p class="card-text">
+						<ul class="list-group list-group-flush">
+							<small class="text-muted">
+								<li class="list-group-item">TYPE : ${ des.type.map((res)=>{return res}) }</li>
+								<li class="list-group-item">HEIGHT : ${ des.height } </li>
+								<li class="list-group-item">WEIGHT : ${ des.weight } </li>
+								<li class="list-group-item">CANDY : ${ des.candy } </li>
+								<li class="list-group-item">CANDY COUNT : ${ des.candy_count } </li>
+								<li class="list-group-item">EGG : ${ des.egg } </li>
+								<li class="list-group-item">SPAWN CHANGE : ${ des.spawn_chance } </li>
+								<li class="list-group-item">MULTIPLIERS : ${ des.multipliers } </li>
+								<li class="list-group-item">WEAKNESSES : ${ des.weaknesses.map((res)=>res) } </li>
+								<li class="list-group-item">NEXT EVOLUTION : ${ checkNextEvolution(des) } </li>
+								<li class="list-group-item">PREV EVOLUTION : ${ checkPrevEvolution(des) } 
+							</small>
+						</ul>
+					</p>
+				</div>
+			</div>
 		`
 	}
 }
