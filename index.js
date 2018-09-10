@@ -16,9 +16,9 @@ let capitalizeFirstLetter=(string)=>(string.charAt(0).toUpperCase() + string.sli
 let findPoke=()=>(pokemon.pokemon.find((val)=>(val.name==capitalizeFirstLetter(myData.value.toLowerCase()))))
 
 let weakSearch=()=>{
-	makeData.innerHTML=`
-		${pokemon.pokemon.filter((val)=>val.weaknesses.find((value)=>value==capitalizeFirstLetter(myData.value.toLowerCase()))).map((res)=>res.name)}
-	`
+	makeData.innerHTML=`<ul class="list-group list-group-flush">
+		${pokemon.pokemon.filter((val)=>val.weaknesses.find((value)=>value==capitalizeFirstLetter(myData.value.toLowerCase()))).map((res)=>'<li class="list-group-item">'+res.name+'</li>').join('')}
+	</ul>`
 }
 let checkNextEvolution=(pokeData)=>(
 		pokeData.next_evolution!=undefined
@@ -30,7 +30,13 @@ let checkPrevEvolution=(pokeData)=>(
 		?
 		pokeData.prev_evolution.map((res)=>res.name):'No Prev Evolution')
 
-let nextEvol=()=>(makeData.innerHTML=`${ checkNextEvolution(findPoke())}`)
+let nextEvol=()=>(makeData.innerHTML=`
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">${ checkNextEvolution(findPoke())}</h1>
+		</div>
+	</div>
+`)
 
 let getInfo=()=>{
 	let des=findPoke()
